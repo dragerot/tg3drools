@@ -1,0 +1,49 @@
+//created on: 22.nov.2015
+package com.sample
+
+import com.sample.DroolsTest.Person;
+import com.sample.DroolsTest.Customer;
+
+
+
+//declare any global variables here
+
+
+
+
+rule "Sjekk alder mindre enn"
+
+    when
+       _person : Person( age < 20, _sallery : sallery  )
+    then
+    System.out.print( "Mindre enn ");
+    
+    System.out.println( _sallery );
+
+end
+
+rule "Sjekk alder Storre enn"
+ 
+    when
+      aa :Customer( $ssnP : ssn )
+      _person : Person( age  >= 20,_sallery : sallery )
+    then
+      _person.setTeksten("OK");
+      System.out.print( "Sjekk alder St�rre enn St�rre enn ");
+      System.out.println( _sallery);
+
+end
+
+rule "SjekkCustomerOgPersonErSamme"
+    when
+     $aa : Customer()  
+     $person : Person( age  >= 20, ssn == $aa.ssn, _sallery : sallery  )
+    then
+     
+      System.out.print( "SjekkCustomerOgPersonErSamme St�rre enn ");
+      System.out.println( _sallery);
+      System.out.println("SjekkCustomerOgPersonErSamme tekst "+ $person.getTeksten());
+
+end
+
+
